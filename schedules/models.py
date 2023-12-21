@@ -1,4 +1,6 @@
 from django.db import models
+from django.core.exceptions import ValidationError
+
 from accounts.models import Account
 # Create your models here.
 
@@ -32,4 +34,6 @@ class Schedule(models.Model):
     place = models.ForeignKey(Place, on_delete=models.PROTECT, related_name='place')
 
     def __str__(self):
-        return f'{self.responsible} - {self.date} | {self.times}'
+        times_str = ', '.join(str(time) for time in self.times.all()) if self.times.exists() else 'No times'
+        return f'{self.responsible} - {self.date} | {times_str}'
+
