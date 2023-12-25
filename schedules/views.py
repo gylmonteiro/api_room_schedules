@@ -56,4 +56,3 @@ class AllSchedulesForUserWithDateView(ListAPIView):
         if schedules_confirmed.exists():
             return schedules_confirmed
         raise NotFound("Nenhum registro localizado")
-
