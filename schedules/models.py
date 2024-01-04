@@ -6,7 +6,7 @@ from accounts.models import Account
 
 
 class Time(models.Model):
-    title = models.TextField()
+    title = models.TextField(unique=True)
     justification = models.TextField(null=True, blank=True)
     start_time = models.TimeField(null=True, blank=True)
     end_time = models.TimeField(null=True, blank=True)
@@ -34,6 +34,6 @@ class Schedule(models.Model):
     place = models.ForeignKey(Place, on_delete=models.PROTECT, related_name='place')
 
     def __str__(self):
-        times_str = ', '.join(str(time) for time in self.times.all()) if self.times.exists() else 'No times'
+        times_str = ', '.join(str(time) for time in self.times.all()) #if self.times.exists() else 'No times'
         return f'{self.responsible} - {self.date} | {times_str}'
 

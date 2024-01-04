@@ -18,7 +18,7 @@ class Series(models.Model):
 
     level = models.IntegerField()
     period = models.CharField(max_length=1, blank=True, null=True, choices=CHOICES_PERIODS)
-    modality = models.ForeignKey('Modality',related_name='series', on_delete=models.CASCADE, blank=True, null=True)
+    modality = models.ForeignKey('Modality', related_name='series', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return f"{self.level}º SÉRIE"
@@ -31,4 +31,3 @@ class Class(models.Model):
 
     def __str__(self):
         return self.name
-
